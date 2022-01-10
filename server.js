@@ -43,6 +43,20 @@ app.get("/hospitals", (req, res) => {
   res.json(cityStratford.hospitals);
 });
 
+
+// return data based on any city or any category that is passed to the server.
+app.get("/:city/:category", (req, res) => {
+  const cityParam = req.params.city.toLowerCase();
+  const categoryParam = req.params.category.toLowerCase();
+
+  if (city[cityParam] && city[cityParam][categoryParam]) {
+    res.json(city[cityParam][categoryParam]);
+  }
+  res
+    .status(400)
+    .json({ msg: `The ${req.params.city} city or the ${req.params.category} category is invalid.` });
+})
+
 // return data based on any city that is passed to the server
 app.get("/:city/pharmacies", (req, res) => {
   const cityParam = req.params.city.toLowerCase()
@@ -75,6 +89,9 @@ app.get("/:city/hospitals", (req, res) => {
   }
   res.status(400).send(`${req.params.city} is not a valid city`);
 });
+
+
+
 
 
 
