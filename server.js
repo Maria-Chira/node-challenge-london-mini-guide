@@ -16,15 +16,23 @@ app.get("/", (req, res) => {
   });
 });
 
+
+// /pharmacies route - returns pharmacies list for Stratford
 app.get("/pharmacies", (req, res) => {
   res.json(cityStratford.pharmacies);
 });
+
+// /colleges route - returns colleges list for Stratford
 app.get("/colleges", (req, res) => {
   res.json(cityStratford.colleges);
 });
+
+// /doctors route - returns doctors list for Stratford
 app.get("/doctors", (req, res) => {
   res.json(cityStratford.doctors);
 });
+
+// /hospitals route - returns hospitals list for Stratford
 app.get("/hospitals", (req, res) => {
   res.json(cityStratford.hospitals);
 });
