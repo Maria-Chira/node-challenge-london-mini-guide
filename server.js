@@ -4,6 +4,12 @@ const app = express();
 
 const cityHarrow = require("./data/Harrow.json");
 const cityStratford = require("./data/Stratford.json");
+const cityHeathrow = require("./data/Heathrow.json");
+const city = {
+  harrow: cityHarrow,
+  stratford: cityStratford,
+  heathrow: cityHeathrow,
+};
 
 
 //responding with the routes we are planning to implement
@@ -36,5 +42,41 @@ app.get("/doctors", (req, res) => {
 app.get("/hospitals", (req, res) => {
   res.json(cityStratford.hospitals);
 });
+
+// return data based on any city that is passed to the server
+app.get("/:city/pharmacies", (req, res) => {
+  const cityParam = req.params.city.toLowerCase()
+  if (city[cityParam]){
+    res.json(city[cityParam].pharmacies);
+  }
+  res.status(400).send(`${req.params.city} is not a valid city`);
+})
+
+app.get("/:city/colleges", (req, res) => {
+  const cityParam = req.params.city.toLowerCase();
+  if (city[cityParam]){
+    res.json(city[cityParam].colleges);
+  }
+  res.status(400).send(`${req.params.city} is not a valid city`);
+});
+
+app.get("/:city/doctors", (req, res) => {
+  const cityParam = req.params.city.toLowerCase();
+  if (city[cityParam]){
+    res.json(city[cityParam].doctors);
+  }
+  res.status(400).send(`${req.params.city} is not a valid city`);
+});
+
+app.get("/:city/hospitals", (req, res) => {
+  const cityParam = req.params.city.toLowerCase();
+  if (city[cityParam]){
+  res.json(city[cityParam].hospitals);
+  }
+  res.status(400).send(`${req.params.city} is not a valid city`);
+});
+
+
+
 
 app.listen(3000);

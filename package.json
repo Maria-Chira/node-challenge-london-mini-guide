@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Maria-Chira/cyf-node-challenges#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
   }
 }
